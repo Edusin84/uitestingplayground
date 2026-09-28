@@ -23,8 +23,6 @@ test('hiding button can be pressed', async ({ page }) => {
 
   await scrollbarsPage.verifyHidingButtonIsPressed();
 
-
-
 });
 
 

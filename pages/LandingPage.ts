@@ -11,6 +11,7 @@ export default class LandingPage {
     readonly clickLink: Locator;
     readonly textInputLink: Locator;
     readonly scrollbarsLink: Locator;
+    readonly verifyTextLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -20,6 +21,7 @@ export default class LandingPage {
         this.clickLink = page.getByRole('link', { name: 'Click', exact: true });
         this.textInputLink = page.getByRole('link', { name: 'Text Input' });
         this.scrollbarsLink = page.getByRole('link', { name: 'Scrollbars' });
+        this.verifyTextLink = page.getByRole('link', { name: 'Verify Text' });
     }
     
     async navigateToLandingPage() {
@@ -69,5 +71,12 @@ export default class LandingPage {
         await this.scrollbarsLink.click();
 
         await expect(this.page).toHaveURL(/scrollbars/);
+    }
+
+    async navigateToVerifyTextPage() {
+        // Press the link to the Verify Text page
+        await this.verifyTextLink.click();
+
+        await expect(this.page).toHaveURL(/verifytext/);
     }
 }
