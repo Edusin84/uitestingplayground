@@ -10,6 +10,7 @@ export default class LandingPage {
     readonly loadDelayLink: Locator;
     readonly clickLink: Locator;
     readonly textInputLink: Locator;
+    readonly scrollbarsLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -18,6 +19,7 @@ export default class LandingPage {
         this.loadDelayLink = page.getByRole('link', { name: 'Load Delay' });
         this.clickLink = page.getByRole('link', { name: 'Click', exact: true });
         this.textInputLink = page.getByRole('link', { name: 'Text Input' });
+        this.scrollbarsLink = page.getByRole('link', { name: 'Scrollbars' });
     }
     
     async navigateToLandingPage() {
@@ -60,5 +62,12 @@ export default class LandingPage {
         await this.textInputLink.click();
 
         await expect(this.page).toHaveURL(/textinput/);
+    }
+
+    async navigateToScrollbarsPage() {
+        // Press the link to the Scrollbars page
+        await this.scrollbarsLink.click();
+
+        await expect(this.page).toHaveURL(/scrollbars/);
     }
 }
