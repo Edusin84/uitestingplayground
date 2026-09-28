@@ -12,6 +12,7 @@ export default class LandingPage {
     readonly textInputLink: Locator;
     readonly scrollbarsLink: Locator;
     readonly verifyTextLink: Locator;
+    readonly progressBarLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -22,6 +23,7 @@ export default class LandingPage {
         this.textInputLink = page.getByRole('link', { name: 'Text Input' });
         this.scrollbarsLink = page.getByRole('link', { name: 'Scrollbars' });
         this.verifyTextLink = page.getByRole('link', { name: 'Verify Text' });
+        this.progressBarLink = page.getByRole('link', { name: 'Progress Bar' });
     }
     
     async navigateToLandingPage() {
@@ -78,5 +80,12 @@ export default class LandingPage {
         await this.verifyTextLink.click();
 
         await expect(this.page).toHaveURL(/verifytext/);
+    }
+
+    async navigateToProgressBarPage() {
+        // Press the link to the Progress Bar page
+        await this.progressBarLink.click(); 
+        
+        await expect(this.page).toHaveURL(/progressbar/);
     }
 }
