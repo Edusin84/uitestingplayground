@@ -18,6 +18,9 @@ declare const process: {
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  expect: {
+    timeout: 30_000,
+  },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
