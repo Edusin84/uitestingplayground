@@ -9,6 +9,7 @@ export default class LandingPage {
     readonly classAttributeLink: Locator;
     readonly loadDelayLink: Locator;
     readonly clickLink: Locator;
+    readonly textInputLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -16,6 +17,7 @@ export default class LandingPage {
         this.classAttributeLink = page.getByRole('link', { name: 'Class Attribute' });
         this.loadDelayLink = page.getByRole('link', { name: 'Load Delay' });
         this.clickLink = page.getByRole('link', { name: 'Click', exact: true });
+        this.textInputLink = page.getByRole('link', { name: 'Text Input' });
     }
     
     async navigateToLandingPage() {
@@ -51,5 +53,12 @@ export default class LandingPage {
         await this.clickLink.click();
 
         await expect(this.page).toHaveURL(/click/);
+    }
+
+    async navigateToTextInputPage() {
+        // Press the link to the Text Input page
+        await this.textInputLink.click();
+
+        await expect(this.page).toHaveURL(/textinput/);
     }
 }
