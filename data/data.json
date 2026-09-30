@@ -1,5 +1,7 @@
 {
     "data":{
-        "textField": "Hello World"
+        "textField": "Hello World",
+        "userName": "John doe",
+        "password": "pwd"
     }
 }

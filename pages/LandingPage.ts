@@ -14,6 +14,7 @@ export default class LandingPage {
     readonly verifyTextLink: Locator;
     readonly progressBarLink: Locator;
     readonly visibilityLink: Locator;
+    readonly sampleAppLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -26,6 +27,7 @@ export default class LandingPage {
         this.verifyTextLink = page.getByRole('link', { name: 'Verify Text' });
         this.progressBarLink = page.getByRole('link', { name: 'Progress Bar' });
         this.visibilityLink = page.getByRole('link', { name: 'Visibility' });
+        this.sampleAppLink = page.getByRole('link', { name: 'Sample App' });
     }
     
     async navigateToLandingPage() {
@@ -96,5 +98,12 @@ export default class LandingPage {
         await this.visibilityLink.click();
 
         await expect(this.page).toHaveURL(/visibility/);
+    }
+
+    async navigateToSampleAppPage() {
+        // Press the link to the Sample App page
+        await this.sampleAppLink.click();
+
+        await expect(this.page).toHaveURL(/sampleapp/);
     }
 }
