@@ -15,6 +15,7 @@ export default class LandingPage {
     readonly progressBarLink: Locator;
     readonly visibilityLink: Locator;
     readonly sampleAppLink: Locator;
+    readonly mouseOverLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -28,6 +29,7 @@ export default class LandingPage {
         this.progressBarLink = page.getByRole('link', { name: 'Progress Bar' });
         this.visibilityLink = page.getByRole('link', { name: 'Visibility' });
         this.sampleAppLink = page.getByRole('link', { name: 'Sample App' });
+        this.mouseOverLink = page.getByRole('link', { name: 'Mouse Over'});
     }
     
     async navigateToLandingPage() {
@@ -105,5 +107,11 @@ export default class LandingPage {
         await this.sampleAppLink.click();
 
         await expect(this.page).toHaveURL(/sampleapp/);
+    }
+
+    async navigateToMouseOverPage() {
+        await this.mouseOverLink.click();
+
+        await expect(this.page).toHaveURL(/mouseover/);
     }
 }
