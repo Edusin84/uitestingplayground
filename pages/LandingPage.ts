@@ -16,6 +16,7 @@ export default class LandingPage {
     readonly visibilityLink: Locator;
     readonly sampleAppLink: Locator;
     readonly mouseOverLink: Locator;
+    readonly shadowDOMLink: Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -30,6 +31,7 @@ export default class LandingPage {
         this.visibilityLink = page.getByRole('link', { name: 'Visibility' });
         this.sampleAppLink = page.getByRole('link', { name: 'Sample App' });
         this.mouseOverLink = page.getByRole('link', { name: 'Mouse Over'});
+        this.shadowDOMLink = page.getByRole('link', { name: 'Shadow DOM'});
     }
     
     async navigateToLandingPage() {
@@ -113,5 +115,11 @@ export default class LandingPage {
         await this.mouseOverLink.click();
 
         await expect(this.page).toHaveURL(/mouseover/);
+    }
+
+    async navigateToShadowDOMPAge() {
+        await this.shadowDOMLink.click();
+
+        await expect(this.page).toHaveURL(/shadowdom/);
     }
 }
