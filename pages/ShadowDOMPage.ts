@@ -27,7 +27,7 @@ export default class ShadowDOMPage {
     async clickGenerateButton() {
         await this.generateButton.click();
 
-        await expect(this.textField).not.toBeNull();
+        await expect(this.textField.inputValue()).not.toBe('');
     }
 
     async saveUUID() {
@@ -41,7 +41,7 @@ export default class ShadowDOMPage {
     }
 
     async compareUUIDs(originalUUID: string) {
-        const copiedUUID: string = (await this.textField.inputValue()) ?? '';
+        const copiedUUID: string = await this.page.evaluate(() => navigator.clipboard.readText());
         console.log('Copied UUID:', copiedUUID);
         expect(copiedUUID).toBe(originalUUID);
     }
