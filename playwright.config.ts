@@ -39,7 +39,11 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    permissions: ['notifications'],
+    permissions: ['notifications', 'clipboard-read', 'clipboard-write'],
+    // Esto permite que la web HTTP use el portapapeles
+    launchOptions: {
+      args: ['--unsafely-treat-insecure-origin-as-secure=http://www.uitestingplayground.com'],
+    },
   },
 
   /* Configure projects for major browsers */

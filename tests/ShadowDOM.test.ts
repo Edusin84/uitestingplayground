@@ -9,10 +9,12 @@ let shadowDOMPage: ShadowDOMPage;
 let UUID: string;
 let copiedUUID: string;
 
-test('generate and copy buttons', async ({ page }) => {
+test('generate and copy buttons', async ({ page, context }) => {
   
   landingPage = new LandingPage(page);
   shadowDOMPage = new ShadowDOMPage(page);
+
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
   await landingPage.navigateToLandingPage();
 
@@ -27,7 +29,8 @@ test('generate and copy buttons', async ({ page }) => {
 
   await shadowDOMPage.copyUUID();
 
+  await shadowDOMPage.clickGenerateButton();
+
   await shadowDOMPage.compareUUIDs(UUID);
+
 });
-
-
